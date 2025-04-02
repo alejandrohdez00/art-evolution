@@ -44,7 +44,7 @@ class ConceptEmbedding:
         """Convert to dictionary for serialization"""
         return {
             "concept": self.concept,
-            "embedding": self.embedding.tolist(),
+            "embedding": self.embedding.astype(float).tolist(),
             "creation_time": self.creation_time,
             "usage_count": self.usage_count,
             "unsuccessful_uses": self.unsuccessful_uses,
@@ -724,7 +724,7 @@ class ConceptPool:
             "concept_history": [(g, a.value, c) for g, a, c in self.concept_history],
             "action_history": [(g, a.value) for g, a in self.action_history],
             "max_unsuccessful_uses": self.max_unsuccessful_uses,
-            "similarity_history": {str(k): v for k, v in self.similarity_history.items()}
+            "similarity_history": {str(k): float(v) for k, v in self.similarity_history.items()}
         }
         
         if self.concept_space_model:
@@ -938,12 +938,34 @@ class ConceptCombinationMemory:
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization"""
+        # Convert combination history, making sure all numeric values are Python native types
+        combination_history_dict = {}
+        for combo, history in self.combination_history.items():
+            combo_key = ",".join(sorted(combo))
+            history_copy = {}
+            for key, value in history.items():
+                if key in ['fitness_scores', 'aesthetic_scores', 'originality_scores', 'diversity_scores']:
+                    # Convert possible NumPy values in lists to native Python floats
+                    history_copy[key] = [float(score) for score in value]
+                else:
+                    history_copy[key] = value
+            combination_history_dict[combo_key] = history_copy
+            
+        # Convert concept performance, making sure all numeric values are Python native types
+        concept_performance_dict = {}
+        for concept, perf in self.concept_performance.items():
+            perf_copy = {}
+            for key, value in perf.items():
+                if key in ['fitness_scores', 'aesthetic_scores', 'originality_scores', 'diversity_scores']:
+                    # Convert possible NumPy values in lists to native Python floats
+                    perf_copy[key] = [float(score) for score in value]
+                else:
+                    perf_copy[key] = value
+            concept_performance_dict[concept] = perf_copy
+        
         return {
-            "combination_history": {
-                ",".join(sorted(combo)): history 
-                for combo, history in self.combination_history.items()
-            },
-            "concept_performance": self.concept_performance
+            "combination_history": combination_history_dict,
+            "concept_performance": concept_performance_dict
         }
     
     @classmethod
