@@ -68,7 +68,7 @@ def get_resnet_model():
     )
     
     # Load the saved model weights
-    model_path = 'data/embedding/best_model_resnet_152.pth'
+    model_path = 'assets/embedding/best_model_resnet_152.pth'
     model.load_state_dict(torch.load(model_path))
     model = model.to(device)
     model.eval()
@@ -448,7 +448,7 @@ def create_embedding_visualization(run_dir, wikiart_embeddings_path, output_dir=
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create embedding visualizations for AI Artist runs")
     parser.add_argument("--run-dir", type=str, required=True, help="Directory containing the run data")
-    parser.add_argument("--wikiart-embeddings", type=str, default="/u/alehe/Projects/AI-Scientist/data/embedding/embeddings.npy", 
+    parser.add_argument("--wikiart-embeddings", type=str, default="assets/embedding/embeddings.npy", 
                         help="Path to WikiArt embeddings file")
     parser.add_argument("--output-dir", type=str, default=None, help="Directory to save visualizations (defaults to run-dir)")
     

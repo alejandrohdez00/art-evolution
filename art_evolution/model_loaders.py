@@ -73,7 +73,7 @@ def get_resnet_model():
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         
         # Load the saved model weights with appropriate device mapping
-        model_path = 'data/embedding/best_model_resnet_152.pth'
+        model_path = 'assets/embedding/best_model_resnet_152.pth'
         
         if device.type == 'cuda':
             model.load_state_dict(torch.load(model_path))

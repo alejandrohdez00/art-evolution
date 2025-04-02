@@ -126,7 +126,7 @@ def evaluate_originality(artwork_path):
             embedding = model(image_tensor).squeeze().cpu().numpy()
         
         # Load WikiArt embeddings
-        data = np.load('data/embedding/embeddings.npy', allow_pickle=True).item()
+        data = np.load('assets/embedding/embeddings.npy', allow_pickle=True).item()
         wikiart_embeddings = data['embeddings']
         
         # Calculate cosine similarity with all WikiArt embeddings
