@@ -127,7 +127,7 @@ def run_evolution(args):
         "RESUME": args.resume,
         "CONCEPTS": args.concepts,
         "EMBEDDING_MODEL": args.embedding_model,
-        "NO_HISTORICAL_INFORMATION": args.no_historical_information,
+        "HISTORICAL_INFORMATION": args.historical_information,
         "FITNESS_FUNCTION": args.fitness_function,
     }
     
@@ -234,12 +234,12 @@ def run_evolution(args):
                     best_combinations = concept_memory.get_best_combinations(3)
                     best_concepts = concept_memory.get_best_concepts(5)
                     
-                    # Format historical data for LLM (only if not in no-historical-information mode)
+                    # Format historical data for LLM (only if in historical-information mode)
                     best_combinations_str = ""
                     best_concepts_str = ""
                     historical_performance = ""
                     
-                    if not config["NO_HISTORICAL_INFORMATION"]:
+                    if config["HISTORICAL_INFORMATION"]:
                         if best_combinations:
                             combination_details = []
                             for combo, score in best_combinations:
@@ -564,10 +564,10 @@ def main():
     parser.add_argument("--resume", type=str, default=None)
     parser.add_argument("--concepts", type=str, nargs="+", default=["romanticism"],
                         help="List of concepts to start with")
-    parser.add_argument("--embedding-model", type=str, choices=["openai", "clip"], default="openai",
-                        help="Model to use for concept embeddings (default: openai)")
-    parser.add_argument("--no-historical-information", action="store_true", default=False,
-                        help="Disable historical performance information in prompts to encourage exploration")
+    parser.add_argument("--embedding-model", type=str, choices=["openai", "clip"], default="clip",
+                        help="Model to use for concept embeddings (default: clip)")
+    parser.add_argument("--historical-information", action="store_true", default=False,
+                        help="Enable historical performance information in prompts")
     parser.add_argument("--max-unsuccessful-uses", type=int, default=3,
                         help="Number of unsuccessful uses before a concept expires (default: 3)")
     parser.add_argument("--fitness-function", type=str, choices=["combined", "aesthetic", "originality", "diversity"], 
