@@ -9,6 +9,11 @@ The fitness function is a combination of the following metrics:
 - Originality: *How original is the artwork compared to WikiArt artworks?* We use a fine-tuned ResNet152 to extract features from the artwork and then we measure the closest match to the features of WikiArt artworks.
 - Diversity: *How diverse are the concepts used in the artwork?* We compute the average cosine similarity between the concepts used in the artwork.
 
+The code has several visualizations to analyze the evolution, as the trajectory of the images in the UMAP space of Wikiart artworks:
+
+![Art Evolution trajectories](media/dragon-embedding.png)
+
+
 ## Setup
 
 Create a virtual environment and install the requirements:
@@ -57,5 +62,7 @@ The `--concepts` argument specifies the set of concepts for which you want to di
 
 You can select to use a single fitness function (aesthetic, originality, diversity) using `--fitness-function`. By default, the fitness function considers the three measures.
 
-*Note: Currently, DALL-E 3 is used to generate the images. We have seen that sometimes it generates bad images when the prompt is complex. We will add the new GPT-4o image generation as soon as it is available.*
+*Note: For faster fitness computation, use GPU*
+
+*Note2: Currently, DALL-E 3 is used to generate the images. We have seen that sometimes it generates bad images when the prompt is complex. We will add the new GPT-4o image generation as soon as it is available.*
 

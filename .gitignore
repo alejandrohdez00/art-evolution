@@ -171,7 +171,6 @@ runs/
 *.json
 *.out
 *.zip
-*.png
 *.jpg
 *.jpeg
 *.npy
