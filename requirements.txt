@@ -1,0 +1,22 @@
+# LLM APIs
+backoff
+openai
+# Viz
+matplotlib
+pypdf
+pymupdf4llm
+plotly
+seaborn
+networkx
+# ML & Data Science
+scikit-learn
+umap-learn
+aesthetic-predictor-v2-5
+# Image Processing
+Pillow
+git+https://github.com/openai/CLIP.git
+# Common Requirements
+torch
+numpy
+transformers
+tqdm
