@@ -1,4 +1,7 @@
 # Art-Evolution
+
+![Art Evolution Example](media/romanticism-mountain.gif)
+
 We use an evolutionary approach to discover novel and interesting conceptual combinations in visual art. We use LLMs (GPT-4o) as the mutation operator, i.e. it will propose new concepts and recombine them with previous concepts to create novel artworks. In each generation, we evaluate the fitness of the artwork and give this feedback to the LLM to guide the search to novel artworks. This approach is inspired by [Discovering Preference Optimization Algorithms with and for Large Language Models](https://arxiv.org/abs/2406.08414) but adapted to the visual art domain and concept recombination.
 
 The fitness function is a combination of the following metrics:
