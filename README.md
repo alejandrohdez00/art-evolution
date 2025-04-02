@@ -30,4 +30,5 @@ python art_evolution/run_evolution.py --concepts mountain --num-generations 15
 
 The `--concepts` argument specifies the set of concepts for which you want to discover novel combinations. These concepts are the original concepts and will be always used in the images.
 
+*Note: Currently, DALL-E 3 is used to generate the images. We have seen that sometimes it generates bad images when the prompt is complex. We will add the new GPT-4o image generation as soon as it is available.*
 
