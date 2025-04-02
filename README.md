@@ -25,7 +25,7 @@ export OPENAI_API_KEY=<your-openai-api-key>
 To run the art evolution, use the following command:
 
 ```bash
-python art_evolution/run_evolution.py --concepts mountain --num-generations 15
+python art_evolution/run_evolution.py --concepts mountain --num-generations 10
 ```
 
 The `--concepts` argument specifies the set of concepts for which you want to discover novel combinations. These concepts are the original concepts and will be always used in the images.
