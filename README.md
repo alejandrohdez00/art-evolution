@@ -21,6 +21,28 @@ Add your OpenAI API key to the `OPENAI_API_KEY` environment variable:
 export OPENAI_API_KEY=<your-openai-api-key>
 ```
 
+## Required Assets
+
+For fitness calculation (originality function), this project requires large asset files that are not included in the repository:
+
+1. `embeddings.npy` (~600MB): Pre-computed embeddings for WikiArt styles
+2. `best_model_resnet_152.pth` (~230MB): Trained ResNet model for embedding generation
+
+### Download Instructions
+
+Before running the evolution using originality, you need to download these files:
+
+1. **Automatic Download**:
+   ```bash
+   # Run the download script to get all required files
+   python download_from_release.py
+   ```
+
+2. **Manual Download**:
+   - Go to the [Releases page](https://github.com/alejandrohdez00/art-evolution/releases/tag/v1.0.0)
+   - Download both files from the release
+   - Place them in the `assets/embedding/` directory
+
 ## Run
 To run the art evolution, use the following command:
 
@@ -29,6 +51,8 @@ python art_evolution/run_evolution.py --concepts mountain --num-generations 10
 ```
 
 The `--concepts` argument specifies the set of concepts for which you want to discover novel combinations. These concepts are the original concepts and will be always used in the images.
+
+You can select to use a single fitness function (aesthetic, originality, diversity) using `--fitness-function`. By default, the fitness function considers the three measures.
 
 *Note: Currently, DALL-E 3 is used to generate the images. We have seen that sometimes it generates bad images when the prompt is complex. We will add the new GPT-4o image generation as soon as it is available.*
 
