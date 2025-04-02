@@ -69,6 +69,18 @@ def get_resnet_model():
     
     # Load the saved model weights
     model_path = 'assets/embedding/best_model_resnet_152.pth'
+    
+    # Check if model file exists
+    if not os.path.exists(model_path):
+        sys.stderr.write(f"ERROR: Model file not found at {model_path}\n\n")
+        sys.stderr.write("Please download the required assets using one of these methods:\n")
+        sys.stderr.write("1. Run the download script: python -m download_from_release\n")
+        sys.stderr.write("2. Download manually from the GitHub Releases page and place in assets/embedding/\n")
+        sys.stderr.write("\nRequired files:\n")
+        sys.stderr.write("- embeddings.npy\n")
+        sys.stderr.write("- best_model_resnet_152.pth\n")
+        sys.exit(1)
+    
     model.load_state_dict(torch.load(model_path))
     model = model.to(device)
     model.eval()
@@ -119,6 +131,18 @@ def embed_images(image_paths, feature_extractor, transform, batch_size=32):
 def load_wikiart_embeddings(embeddings_path):
     """Load pre-computed WikiArt embeddings"""
     sys.stderr.write(f"Loading WikiArt embeddings from {embeddings_path}...\n")
+    
+    # Check if embeddings file exists
+    if not os.path.exists(embeddings_path):
+        sys.stderr.write(f"ERROR: Embeddings file not found at {embeddings_path}\n\n")
+        sys.stderr.write("Please download the required assets using one of these methods:\n")
+        sys.stderr.write("1. Run the download script: python -m download_from_release\n")
+        sys.stderr.write("2. Download manually from the GitHub Releases page and place in assets/embedding/\n")
+        sys.stderr.write("\nRequired files:\n")
+        sys.stderr.write("- embeddings.npy\n")
+        sys.stderr.write("- best_model_resnet_152.pth\n")
+        sys.exit(1)
+    
     data = np.load(embeddings_path, allow_pickle=True).item()
     return data['embeddings'], data['labels']
 
