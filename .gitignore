@@ -174,3 +174,5 @@ runs/
 *.png
 *.jpg
 *.jpeg
+*.npy
+*.pth
