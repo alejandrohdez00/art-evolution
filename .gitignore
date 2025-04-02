@@ -167,7 +167,10 @@ cython_debug/
 # Misc folders
 data/
 *ckpt.pt
+runs/
+*.json
+*.out
 *.zip
-*/*.out
-*/*.json
-*/runs
+*.png
+*.jpg
+*.jpeg
