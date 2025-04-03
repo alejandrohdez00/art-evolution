@@ -70,7 +70,9 @@ python art_evolution/run_evolution.py --concepts mountain --num-generations 10
 ```
 
 The `--concepts` argument specifies the set of concepts for which you want to discover novel combinations. These concepts are the original concepts and will be always used in the images.
+
 When the `--historical-information` argument is introduced, in each generation the LLM will be given also information about which concept has been proven to be more effective during the run. Note that this can bias more the search to concepts that usually worked well.
+
 Using `--max-unsuccesful-uses`you can define the number of failed attempts before a concept is discarded from the pool of usable concepts.
 
 You can select to use a single fitness function (aesthetic, originality, diversity) using `--fitness-function`. By default, the fitness function considers the three measures.
