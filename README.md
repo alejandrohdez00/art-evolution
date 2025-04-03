@@ -17,6 +17,7 @@ The code has several visualizations to analyze the evolution, as the trajectory 
 
 ![Art Evolution trajectories](media/dragon-embedding.png)
 
+**Note: This is not the final version. We are working in improvements and fixes in both the plots and the overall logic.**
 
 ## Setup
 
